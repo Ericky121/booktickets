@@ -23,7 +23,7 @@ class HotelScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 17),
       width: size.width * 0.6,
-      height: 350,
+      height: 250,
       margin: const EdgeInsets.only(left: 20, right: 10, top: 5),
       decoration: BoxDecoration(
         color: Styles.primaryColor,
@@ -64,7 +64,7 @@ class HotelScreen extends StatelessWidget {
           ),
           const Gap(8),
           Text(
-            "${hotel["price"]}/night",
+            "\$${hotel["price"]}/night",
             style: Styles.headLineStyle1.copyWith(color: Styles.kakiColor),
           )
         ],
