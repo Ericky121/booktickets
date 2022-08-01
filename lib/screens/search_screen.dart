@@ -1,4 +1,5 @@
 import 'package:booktickets/utils/app_styles.dart';
+import 'package:booktickets/widgets/double_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -93,6 +94,9 @@ class SearchScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
+          Gap(AppLayout.getHeight(25)),
+          AppDoubleTextWidget(bigText: "Upcoming Flights", smallText: "View all"),
+
         ],
       ),
     );
