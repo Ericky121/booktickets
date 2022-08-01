@@ -1,4 +1,5 @@
 import 'package:booktickets/screens/home_screen.dart';
+import 'package:booktickets/screens/search_screen.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +16,8 @@ class _BottomBarState extends State<BottomBar> {
   int _selectedIndex = 0;
 
   static final List<Widget> _widgetOption = <Widget>[
-    HomeScreen(),
-    const Text("Home"),
-    const Text("Search"),
+    const HomeScreen(),
+    const SearchScreen(),
     const Text("Tickets"),
     const Text("Profile")
   ];
@@ -32,7 +32,7 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: _widgetOption[0]
+        child: _widgetOption[_selectedIndex]
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
