@@ -24,8 +24,8 @@ class TicketView extends StatelessWidget {
   }
    */
   final Map<String, dynamic> ticket;
-
-  const TicketView({Key? key, required this.ticket}) : super(key: key);
+  final bool isColor;
+  const TicketView({Key? key, required this.ticket, this.isColor = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +42,8 @@ class TicketView extends StatelessWidget {
            Showing the blue part of the card/ticket
            */
             Container(
-              decoration: const BoxDecoration(
-                color: Color(0xFF526799),
+              decoration: BoxDecoration(
+                color: isColor ? Color(0xFF526799) : Colors.white,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(21),
                   topRight: Radius.circular(21),
@@ -54,9 +54,13 @@ class TicketView extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text(ticket["from"]["code"], style: Styles.headLineStyle3.copyWith(color: Colors.white)),
+                      Text(
+                        ticket["from"]["code"],
+                        style: isColor ? Styles.headLineStyle3.copyWith(color: Colors.white)
+                            : Styles.headLineStyle3
+                      ),
                       Expanded(child: Container(),),
-                      ThickContainer(),
+                      ThickContainer(isColor: isColor,),
                       Expanded(
                         child: Stack(
                           children: [
@@ -64,25 +68,33 @@ class TicketView extends StatelessWidget {
                               height: 24,
                               child: LayoutBuilder(
                                 builder: (BuildContext context, BoxConstraints constraints) {
-                                  print("The width is ${constraints.constrainWidth()}");
+                                  //print("The width is ${constraints.constrainWidth()}");
                                   return Flex(
                                     direction: Axis.horizontal,
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     mainAxisSize: MainAxisSize.max,
                                     children: List.generate((constraints.constrainWidth()/6).floor(), (index) => SizedBox(
                                       width: 3, height: 1, child: DecoratedBox(decoration: BoxDecoration(
-                                        color: Colors.white
+                                        color: isColor ? Colors.white : Colors.grey.shade300
                                     ),),
                                     )),
                                   );
                                 },
                               ),
                             ),
-                            Center(child: Transform.rotate(angle: 1.5, child: Icon(Icons.local_airport_rounded, color: Colors.white),)),
+                            Center(
+                              child: Transform.rotate(
+                                angle: 1.5,
+                                child: Icon(
+                                  Icons.local_airport_rounded,
+                                  color: isColor ? Colors.white : Color(0xFF8ACCF7)
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                      ThickContainer(),
+                      ThickContainer(isColor: isColor,),
                       Expanded(child: Container(),),
                       Text(ticket["to"]["code"], style: Styles.headLineStyle3.copyWith(color: Colors.white)),
                     ],
