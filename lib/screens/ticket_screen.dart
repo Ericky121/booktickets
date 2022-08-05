@@ -1,3 +1,4 @@
+import 'package:barcode_widget/barcode_widget.dart';
 import 'package:booktickets/screens/ticket_view.dart';
 import 'package:booktickets/utils/app_info_list.dart';
 import 'package:booktickets/utils/app_layout.dart';
@@ -62,7 +63,7 @@ class TicketScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 1),
+              //SizedBox(height: 1),
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -71,6 +72,9 @@ class TicketScreen extends StatelessWidget {
                 margin: EdgeInsets.only(right: AppLayout.getHeight(16), left: AppLayout.getHeight(16)),
                 child: Column(
                   children: [
+                    Gap(AppLayout.getHeight(20)),
+                    AppLayoutBuilderWidget(sections: 15, width: 5,),
+                    Gap(AppLayout.getHeight(20)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -86,13 +90,108 @@ class TicketScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    AppLayoutBuilderWidget(sections: 15,),
-
+                    Gap(AppLayout.getHeight(20)),
+                    AppLayoutBuilderWidget(sections: 15, width: 5,),
+                    Gap(AppLayout.getHeight(20)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Image.asset("assets/images/visa.png", scale: 11,),
+                                Text(
+                                  " *** 2642",
+                                  style: Styles.headLineStyle3,
+                                )
+                              ],
+                            ),
+                            Gap(5),
+                            Text(
+                              "Payment method",
+                              style: Styles.headLineStyle4,
+                            )
+                          ],
+                        ),
+                        AppColumnLayout(
+                          firstText: "\$249.99",
+                          secondText: "Price",
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                        ),
+                      ],
+                    ),
+                    Gap(AppLayout.getHeight(10)),
+                    SizedBox(height: 1,),
                   ],
                 ),
-              )
+              ),
+              /*
+              Barcode
+               */
+              Container(
+                margin: EdgeInsets.only(left: 15, right: 15),
+                padding: EdgeInsets.only(top: 15, bottom: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(15),
+                    bottomLeft: Radius.circular(15)
+                  ),
+                  color: Colors.white,
+                ),
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: AppLayout.getHeight(15)),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(AppLayout.getHeight(15)),
+                    child: BarcodeWidget(
+                      barcode: Barcode.code128(),
+                      data: "htts://github.com/martinovovo",
+                      drawText: false,
+                      color: Styles.textColor,
+                      width: double.infinity,
+                      height: 70
+                    ),
+                  ),
+                ),
+              ),
+              Gap(20),
+              Container(
+                //padding: EdgeInsets.only(left:AppLayout.getHeight(15)),
+                child: TicketView(ticket: ticketList[0], isColor: true,),
+              ),
             ],
           ),
+          Positioned(
+            left: 23,
+            top: 295,
+            child: Container(
+              padding: EdgeInsets.all(3),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: Styles.textColor, width: 2),
+              ),
+              child: CircleAvatar(
+                maxRadius: 4,
+                backgroundColor: Styles.textColor,
+              ),
+            ),
+          ),
+          Positioned(
+            left: 350,
+            top: 295,
+            child: Container(
+              padding: EdgeInsets.all(3),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: Styles.textColor, width: 2),
+              ),
+              child: CircleAvatar(
+                maxRadius: 4,
+                backgroundColor: Styles.textColor,
+              ),
+            ),
+          )
         ],
       ),
     );
