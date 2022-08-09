@@ -3,6 +3,7 @@ import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../utils/app_layout.dart';
+import '../widgets/column_layout.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -165,7 +166,103 @@ class ProfileScreen extends StatelessWidget {
           ),
           Gap(AppLayout.getHeight(25)),
           Text("Accumulated miles", style: Styles.headLineStyle2,),
-
+          Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: AppLayout.getWidth(15),
+            ),
+            child: Column(
+              children: [
+                Gap(AppLayout.getHeight(15)),
+                Text(
+                  "192882",
+                  style: TextStyle(
+                    fontSize: 45,
+                    color: Styles.textColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Gap(AppLayout.getHeight(20)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Miles accrued",
+                      style: Styles.headLineStyle4.copyWith(fontSize: 16),
+                    ),
+                    Text(
+                      "23 May 2021",
+                      style: Styles.headLineStyle4.copyWith(fontSize: 16),
+                    )
+                  ],
+                ),
+                Gap(AppLayout.getHeight(4)),
+                Divider(color: Colors.grey.shade300,),
+                Gap(AppLayout.getHeight(4)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppColumnLayout(
+                      firstText: "23 042",
+                      secondText: "Miles",
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                    ),
+                    AppColumnLayout(
+                      firstText: "Airline CO",
+                      secondText: "Received from",
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                    )
+                  ],
+                ),
+                Gap(AppLayout.getHeight(4)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppColumnLayout(
+                      firstText: "24",
+                      secondText: "Miles",
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                    ),
+                    AppColumnLayout(
+                      firstText: "McDonal's",
+                      secondText: "Received from",
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                    )
+                  ],
+                ),
+                Gap(AppLayout.getHeight(4)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppColumnLayout(
+                      firstText: "52 340",
+                      secondText: "Miles",
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                    ),
+                    AppColumnLayout(
+                      firstText: "Exuma",
+                      secondText: "Received from",
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                    )
+                  ],
+                ),
+                Gap(AppLayout.getHeight(12)),
+                InkWell(
+                  onTap: () {
+                    print("tapped!");
+                  },
+                  child: Center(
+                    child: Text(
+                      "How to get more miles",
+                      style: Styles.textStyle.copyWith(
+                        color: Styles.primaryColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
